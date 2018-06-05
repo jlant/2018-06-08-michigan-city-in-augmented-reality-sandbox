@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Columbus, Indiana</title>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+		<link rel="stylesheet" href="css/MarkerCluster.css" />
+		<link rel="stylesheet" href="css/MarkerCluster.Default.css" />
+		<link rel="stylesheet" type="text/css" href="css/own_style.css">
+		<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+		<script src="js/leaflet-hash.js"></script>
+		<script src="js/Autolinker.min.js"></script>
+		<script src="js/leaflet.markercluster.js"></script>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	</head>
+	<body>
+		<div id="map"></div>
+		<script src="data/exp_elev6217.js"></script>
+		<script src="data/exp_hospital.js"></script>
+		<script src="data/exp_usgsgagesindiana.js"></script>
+		<script src="data/exp_nhdflowlines.js"></script>
+		<script src="data/exp_watershed.js"></script>
+		<script src="data/exp_precipforecast.js"></script>
+		<script>
+		var map = L.map('map', {
+			zoomControl:true, maxZoom:19
+		}).fitBounds([[20.250082083,-103.649],[52.949917917,-61.691]]);
+		var hash = new L.Hash(map);
+		var additional_attrib = 'created w. <a href="https://github.com/geolicious/qgis2leaf" target ="_blank">qgis2leaf</a> by <a href="http://www.geolicious.de" target ="_blank">Geolicious</a> & contributors<br>';
+		var feature_group = new L.featureGroup([]);
+		var raster_group = new L.LayerGroup([]);
+		var basemap_0 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+});
+		basemap_0.addTo(map);
+
+		var layerOrder=new Array();
+		function pop_precipforecast(feature, layer) {					
+			var popupContent = '<table><tr><th scope="row">ID</th><td>' + Autolinker.link(String(feature.properties['ID'])) + '</td></tr><tr><th scope="row">PRODUCT</th><td>' + Autolinker.link(String(feature.properties['PRODUCT'])) + '</td></tr><tr><th scope="row">VALID_TIME</th><td>' + Autolinker.link(String(feature.properties['VALID_TIME'])) + '</td></tr><tr><th scope="row">QPF</th><td>' + Autolinker.link(String(feature.properties['QPF'])) + '</td></tr><tr><th scope="row">UNITS</th><td>' + Autolinker.link(String(feature.properties['UNITS'])) + '</td></tr><tr><th scope="row">ISSUE_TIME</th><td>' + Autolinker.link(String(feature.properties['ISSUE_TIME'])) + '</td></tr><tr><th scope="row">START_TIME</th><td>' + Autolinker.link(String(feature.properties['START_TIME'])) + '</td></tr><tr><th scope="row">END_TIME</th><td>' + Autolinker.link(String(feature.properties['END_TIME'])) + '</td></tr></table>';
+			layer.bindPopup(popupContent);
+		}
+
+		function doStyleprecipforecast(feature) {
+			switch (feature.properties.QPF) {
+				case 0.01:
+					return {
+						weight: '1.3',
+						fillColor: '#2c7bb6',
+						color: '#000000',
+						weight: '1',
+						dashArray: '',
+						opacity: '0.5',
+						fillOpacity: '0.5',
+					};
+					break;
+				case 0.1:
+					return {
+						weight: '1.3',
+						fillColor: '#64a4cc',
+						color: '#000000',
+						weight: '1',
+						dashArray: '',
+						opacity: '0.5',
+						fillOpacity: '0.5',
+					};
+					break;
+				case 0.25:
+					return {
+						weight: '1.3',
+						fillColor: '#9ccee3',
+						color: '#000000',
+						weight: '1',
+						dashArray: '',
+						opacity: '0.5',
+						fillOpacity: '0.5',
+					};
+					break;
+				case 0.5:
+					return {
+						weight: '1.3',
+						fillColor: '#c6e5db',
+						color: '#000000',
+						weight: '1',
+						dashArray: '',
+						opacity: '0.5',
+						fillOpacity: '0.5',
+					};
+					break;
+				case 0.75:
+					return {
+						weight: '1.3',
+						fillColor: '#ecf6c8',
+						color: '#000000',
+						weight: '1',
+						dashArray: '',
+						opacity: '0.5',
+						fillOpacity: '0.5',
+					};
+					break;
+				case 1.0:
+					return {
+						weight: '1.3',
+						fillColor: '#feedaa',
+						color: '#000000',
+						weight: '1',
+						dashArray: '',
+						opacity: '0.5',
+						fillOpacity: '0.5',
+					};
+					break;
+				case 1.25:
+					return {
+						weight: '1.3',
+						fillColor: '#fdc980',
+						color: '#000000',
+						weight: '1',
+						dashArray: '',
+						opacity: '0.5',
+						fillOpacity: '0.5',
+					};
+					break;
+				case 1.5:
+					return {
+						weight: '1.3',
+						fillColor: '#f89d59',
+						color: '#000000',
+						weight: '1',
+						dashArray: '',
+						opacity: '0.5',
+						fillOpacity: '0.5',
+					};
+					break;
+				case 1.75:
+					return {
+						weight: '1.3',
+						fillColor: '#e75b3a',
+						color: '#000000',
+						weight: '1',
+						dashArray: '',
+						opacity: '0.5',
+						fillOpacity: '0.5',
+					};
+					break;
+				default:
+					return {
+						weight: '1.3',
+						fillColor: '#d7191c',
+						color: '#000000',
+						weight: '1',
+						dashArray: '',
+						opacity: '0.5',
+						fillOpacity: '0.5',
+					};
+					break;
+			}
+		}
+		var exp_precipforecastJSON = new L.geoJson(exp_precipforecast,{
+			onEachFeature: pop_precipforecast,
+			style: doStyleprecipforecast
+		});
+		//add comment sign to hide this layer on the map in the initial view.
+		feature_group.addLayer(exp_precipforecastJSON);
+		function pop_watershed(feature, layer) {					
+			var popupContent = '<table><tr><th scope="row">HYDROID</th><td>' + Autolinker.link(String(feature.properties['HYDROID'])) + '</td></tr><tr><th scope="row">DRAINID</th><td>' + Autolinker.link(String(feature.properties['DRAINID'])) + '</td></tr><tr><th scope="row">NAME</th><td>' + Autolinker.link(String(feature.properties['NAME'])) + '</td></tr><tr><th scope="row">DESCRIPT</th><td>' + Autolinker.link(String(feature.properties['DESCRIPT'])) + '</td></tr><tr><th scope="row">GLOBALWSHD</th><td>' + Autolinker.link(String(feature.properties['GLOBALWSHD'])) + '</td></tr><tr><th scope="row">RELATEDOID</th><td>' + Autolinker.link(String(feature.properties['RELATEDOID'])) + '</td></tr><tr><th scope="row">HUCID</th><td>' + Autolinker.link(String(feature.properties['HUCID'])) + '</td></tr><tr><th scope="row">DRNAREA</th><td>' + Autolinker.link(String(feature.properties['DRNAREA'])) + '</td></tr><tr><th scope="row">CSL10_85</th><td>' + Autolinker.link(String(feature.properties['CSL10_85'])) + '</td></tr><tr><th scope="row">CONTDA</th><td>' + Autolinker.link(String(feature.properties['CONTDA'])) + '</td></tr><tr><th scope="row">URBAN</th><td>' + Autolinker.link(String(feature.properties['URBAN'])) + '</td></tr><tr><th scope="row">WETLAND</th><td>' + Autolinker.link(String(feature.properties['WETLAND'])) + '</td></tr><tr><th scope="row">PK10</th><td>' + Autolinker.link(String(feature.properties['PK10'])) + '</td></tr><tr><th scope="row">PK25</th><td>' + Autolinker.link(String(feature.properties['PK25'])) + '</td></tr><tr><th scope="row">PK50</th><td>' + Autolinker.link(String(feature.properties['PK50'])) + '</td></tr><tr><th scope="row">PK100</th><td>' + Autolinker.link(String(feature.properties['PK100'])) + '</td></tr><tr><th scope="row">PK200</th><td>' + Autolinker.link(String(feature.properties['PK200'])) + '</td></tr><tr><th scope="row">PK500</th><td>' + Autolinker.link(String(feature.properties['PK500'])) + '</td></tr><tr><th scope="row">NSSREGNO</th><td>' + Autolinker.link(String(feature.properties['NSSREGNO'])) + '</td></tr><tr><th scope="row">BFREGNO</th><td>' + Autolinker.link(String(feature.properties['BFREGNO'])) + '</td></tr><tr><th scope="row">BFAREA</th><td>' + Autolinker.link(String(feature.properties['BFAREA'])) + '</td></tr><tr><th scope="row">BFDPTH</th><td>' + Autolinker.link(String(feature.properties['BFDPTH'])) + '</td></tr><tr><th scope="row">BFWDTH</th><td>' + Autolinker.link(String(feature.properties['BFWDTH'])) + '</td></tr><tr><th scope="row">LC11IMP</th><td>' + Autolinker.link(String(feature.properties['LC11IMP'])) + '</td></tr><tr><th scope="row">LC11DEV</th><td>' + Autolinker.link(String(feature.properties['LC11DEV'])) + '</td></tr><tr><th scope="row">HIGHREG</th><td>' + Autolinker.link(String(feature.properties['HIGHREG'])) + '</td></tr><tr><th scope="row">Q10</th><td>' + Autolinker.link(String(feature.properties['Q10'])) + '</td></tr><tr><th scope="row">Q25</th><td>' + Autolinker.link(String(feature.properties['Q25'])) + '</td></tr><tr><th scope="row">Q50</th><td>' + Autolinker.link(String(feature.properties['Q50'])) + '</td></tr><tr><th scope="row">Q100</th><td>' + Autolinker.link(String(feature.properties['Q100'])) + '</td></tr><tr><th scope="row">ORIG_FID</th><td>' + Autolinker.link(String(feature.properties['ORIG_FID'])) + '</td></tr><tr><th scope="row">Shape_Leng</th><td>' + Autolinker.link(String(feature.properties['Shape_Leng'])) + '</td></tr><tr><th scope="row">Shape_Area</th><td>' + Autolinker.link(String(feature.properties['Shape_Area'])) + '</td></tr></table>';
+			layer.bindPopup(popupContent);
+		}
+
+		function doStylewatershed(feature) {
+				return {
+					color: '#33a02c',
+					fillColor: '#33a02c',
+					weight: 1.3,
+					dashArray: '',
+					opacity: 0.5,
+					fillOpacity: 0.5
+				};
+
+		}
+		var exp_watershedJSON = new L.geoJson(exp_watershed,{
+			onEachFeature: pop_watershed,
+			style: doStylewatershed
+		});
+		layerOrder[layerOrder.length] = exp_watershedJSON;
+		for (index = 0; index < layerOrder.length; index++) {
+			feature_group.removeLayer(layerOrder[index]);feature_group.addLayer(layerOrder[index]);
+		}
+		//add comment sign to hide this layer on the map in the initial view.
+		feature_group.addLayer(exp_watershedJSON);
+		function pop_nhdflowlines(feature, layer) {					
+			var popupContent = '<table><tr><th scope="row">Permanent_</th><td>' + Autolinker.link(String(feature.properties['Permanent_'])) + '</td></tr><tr><th scope="row">FDate</th><td>' + Autolinker.link(String(feature.properties['FDate'])) + '</td></tr><tr><th scope="row">Resolution</th><td>' + Autolinker.link(String(feature.properties['Resolution'])) + '</td></tr><tr><th scope="row">GNIS_ID</th><td>' + Autolinker.link(String(feature.properties['GNIS_ID'])) + '</td></tr><tr><th scope="row">GNIS_Name</th><td>' + Autolinker.link(String(feature.properties['GNIS_Name'])) + '</td></tr><tr><th scope="row">LengthKM</th><td>' + Autolinker.link(String(feature.properties['LengthKM'])) + '</td></tr><tr><th scope="row">ReachCode</th><td>' + Autolinker.link(String(feature.properties['ReachCode'])) + '</td></tr><tr><th scope="row">FlowDir</th><td>' + Autolinker.link(String(feature.properties['FlowDir'])) + '</td></tr><tr><th scope="row">WBArea_Per</th><td>' + Autolinker.link(String(feature.properties['WBArea_Per'])) + '</td></tr><tr><th scope="row">FType</th><td>' + Autolinker.link(String(feature.properties['FType'])) + '</td></tr><tr><th scope="row">FCode</th><td>' + Autolinker.link(String(feature.properties['FCode'])) + '</td></tr><tr><th scope="row">Shape_Leng</th><td>' + Autolinker.link(String(feature.properties['Shape_Leng'])) + '</td></tr><tr><th scope="row">Enabled</th><td>' + Autolinker.link(String(feature.properties['Enabled'])) + '</td></tr></table>';
+			layer.bindPopup(popupContent);
+		}
+
+		function doStylenhdflowlines(feature) {
+				return {
+					weight: 1.3,
+					color: '#1f78b4',
+					dashArray: '',
+					opacity: 1.0,
+					fillOpacity: 1.0
+				};
+		}
+		var exp_nhdflowlinesJSON = new L.geoJson(exp_nhdflowlines,{
+			onEachFeature: pop_nhdflowlines,
+			style: doStylenhdflowlines
+		});
+		layerOrder[layerOrder.length] = exp_nhdflowlinesJSON;
+		for (index = 0; index < layerOrder.length; index++) {
+			feature_group.removeLayer(layerOrder[index]);feature_group.addLayer(layerOrder[index]);
+		}
+		//add comment sign to hide this layer on the map in the initial view.
+		feature_group.addLayer(exp_nhdflowlinesJSON);
+		function pop_usgsgagesindiana(feature, layer) {					
+			var popupContent = '<table><tr><th scope="row">OBJECTID</th><td>' + Autolinker.link(String(feature.properties['OBJECTID'])) + '</td></tr><tr><th scope="row">FID_SITES</th><td>' + Autolinker.link(String(feature.properties['FID_SITES'])) + '</td></tr><tr><th scope="row">AGENCY_CD</th><td>' + Autolinker.link(String(feature.properties['AGENCY_CD'])) + '</td></tr><tr><th scope="row">SITE_NO</th><td>' + Autolinker.link(String(feature.properties['SITE_NO'])) + '</td></tr><tr><th scope="row">STATION_NM</th><td>' + Autolinker.link(String(feature.properties['STATION_NM'])) + '</td></tr><tr><th scope="row">STATE_CD</th><td>' + Autolinker.link(String(feature.properties['STATE_CD'])) + '</td></tr><tr><th scope="row">STATE</th><td>' + Autolinker.link(String(feature.properties['STATE'])) + '</td></tr><tr><th scope="row">SITESTATUS</th><td>' + Autolinker.link(String(feature.properties['SITESTATUS'])) + '</td></tr><tr><th scope="row">DA_SQ_MILE</th><td>' + Autolinker.link(String(feature.properties['DA_SQ_MILE'])) + '</td></tr><tr><th scope="row">LON_SITE</th><td>' + Autolinker.link(String(feature.properties['LON_SITE'])) + '</td></tr><tr><th scope="row">LAT_SITE</th><td>' + Autolinker.link(String(feature.properties['LAT_SITE'])) + '</td></tr><tr><th scope="row">LON_NHD</th><td>' + Autolinker.link(String(feature.properties['LON_NHD'])) + '</td></tr><tr><th scope="row">LAT_NHD</th><td>' + Autolinker.link(String(feature.properties['LAT_NHD'])) + '</td></tr><tr><th scope="row">NHD2GAGE_D</th><td>' + Autolinker.link(String(feature.properties['NHD2GAGE_D'])) + '</td></tr><tr><th scope="row">REVIEWED</th><td>' + Autolinker.link(String(feature.properties['REVIEWED'])) + '</td></tr><tr><th scope="row">BFIYRS</th><td>' + Autolinker.link(String(feature.properties['BFIYRS'])) + '</td></tr><tr><th scope="row">BFI_AVE</th><td>' + Autolinker.link(String(feature.properties['BFI_AVE'])) + '</td></tr><tr><th scope="row">BFI_STDEV</th><td>' + Autolinker.link(String(feature.properties['BFI_STDEV'])) + '</td></tr><tr><th scope="row">GOTBFI</th><td>' + Autolinker.link(String(feature.properties['GOTBFI'])) + '</td></tr><tr><th scope="row">DAY1</th><td>' + Autolinker.link(String(feature.properties['DAY1'])) + '</td></tr><tr><th scope="row">DAYN</th><td>' + Autolinker.link(String(feature.properties['DAYN'])) + '</td></tr><tr><th scope="row">NDAYS</th><td>' + Autolinker.link(String(feature.properties['NDAYS'])) + '</td></tr><tr><th scope="row">NDAYSGT0</th><td>' + Autolinker.link(String(feature.properties['NDAYSGT0'])) + '</td></tr><tr><th scope="row">MIN_</th><td>' + Autolinker.link(String(feature.properties['MIN_'])) + '</td></tr><tr><th scope="row">P1</th><td>' + Autolinker.link(String(feature.properties['P1'])) + '</td></tr><tr><th scope="row">P5</th><td>' + Autolinker.link(String(feature.properties['P5'])) + '</td></tr><tr><th scope="row">P10</th><td>' + Autolinker.link(String(feature.properties['P10'])) + '</td></tr><tr><th scope="row">P20</th><td>' + Autolinker.link(String(feature.properties['P20'])) + '</td></tr><tr><th scope="row">P25</th><td>' + Autolinker.link(String(feature.properties['P25'])) + '</td></tr><tr><th scope="row">P30</th><td>' + Autolinker.link(String(feature.properties['P30'])) + '</td></tr><tr><th scope="row">P40</th><td>' + Autolinker.link(String(feature.properties['P40'])) + '</td></tr><tr><th scope="row">P50</th><td>' + Autolinker.link(String(feature.properties['P50'])) + '</td></tr><tr><th scope="row">P60</th><td>' + Autolinker.link(String(feature.properties['P60'])) + '</td></tr><tr><th scope="row">P70</th><td>' + Autolinker.link(String(feature.properties['P70'])) + '</td></tr><tr><th scope="row">P75</th><td>' + Autolinker.link(String(feature.properties['P75'])) + '</td></tr><tr><th scope="row">P80</th><td>' + Autolinker.link(String(feature.properties['P80'])) + '</td></tr><tr><th scope="row">P90</th><td>' + Autolinker.link(String(feature.properties['P90'])) + '</td></tr><tr><th scope="row">P95</th><td>' + Autolinker.link(String(feature.properties['P95'])) + '</td></tr><tr><th scope="row">P99</th><td>' + Autolinker.link(String(feature.properties['P99'])) + '</td></tr><tr><th scope="row">MAX_</th><td>' + Autolinker.link(String(feature.properties['MAX_'])) + '</td></tr><tr><th scope="row">AVE</th><td>' + Autolinker.link(String(feature.properties['AVE'])) + '</td></tr><tr><th scope="row">STDEV</th><td>' + Autolinker.link(String(feature.properties['STDEV'])) + '</td></tr><tr><th scope="row">GOTQ</th><td>' + Autolinker.link(String(feature.properties['GOTQ'])) + '</td></tr><tr><th scope="row">NWISWEB</th><td>' + Autolinker.link(String(feature.properties['NWISWEB'])) + '</td></tr><tr><th scope="row">HUC</th><td>' + Autolinker.link(String(feature.properties['HUC'])) + '</td></tr><tr><th scope="row">HUC_REG</th><td>' + Autolinker.link(String(feature.properties['HUC_REG'])) + '</td></tr><tr><th scope="row">SUBREGIONS</th><td>' + Autolinker.link(String(feature.properties['SUBREGIONS'])) + '</td></tr><tr><th scope="row">ACCOUNTING</th><td>' + Autolinker.link(String(feature.properties['ACCOUNTING'])) + '</td></tr></table>';
+			layer.bindPopup(popupContent);
+		}
+
+		var exp_usgsgagesindianaJSON = new L.geoJson(exp_usgsgagesindiana,{
+			onEachFeature: pop_usgsgagesindiana,
+			pointToLayer: function (feature, latlng) {  
+				return L.circleMarker(latlng, {
+					radius: 6.0,
+					fillColor: '#000000',
+					color: '#000000',
+					weight: 1,
+					opacity: 1.0,
+					fillOpacity: 1.0
+				})
+			}
+		});
+		var cluster_groupusgsgagesindianaJSON= new L.MarkerClusterGroup({showCoverageOnHover: false});
+		cluster_groupusgsgagesindianaJSON.addLayer(exp_usgsgagesindianaJSON);
+		//add comment sign to hide this layer on the map in the initial view.
+		cluster_groupusgsgagesindianaJSON.addTo(map);
+		function pop_hospital(feature, layer) {					
+			var popupContent = '<table><tr><th scope="row">lat</th><td>' + Autolinker.link(String(feature.properties['lat'])) + '</td></tr><tr><th scope="row">lon</th><td>' + Autolinker.link(String(feature.properties['lon'])) + '</td></tr><tr><th scope="row">name</th><td>' + Autolinker.link(String(feature.properties['name'])) + '</td></tr></table>';
+			layer.bindPopup(popupContent);
+		}
+
+		var exp_hospitalJSON = new L.geoJson(exp_hospital,{
+			onEachFeature: pop_hospital,
+			pointToLayer: function (feature, latlng) {  
+				return L.circleMarker(latlng, {
+					radius: 4.0,
+					fillColor: '#ffa000',
+					color: '#000000',
+					weight: 1,
+					opacity: 1.0,
+					fillOpacity: 1.0
+				})
+			}
+		});
+		var cluster_grouphospitalJSON= new L.MarkerClusterGroup({showCoverageOnHover: false});
+		cluster_grouphospitalJSON.addLayer(exp_hospitalJSON);
+		//add comment sign to hide this layer on the map in the initial view.
+		cluster_grouphospitalJSON.addTo(map);
+		function pop_elev6217(feature, layer) {					
+			var popupContent = '<table><tr><th scope="row">FID_</th><td>' + Autolinker.link(String(feature.properties['FID_'])) + '</td></tr><tr><th scope="row">ID</th><td>' + Autolinker.link(String(feature.properties['ID'])) + '</td></tr><tr><th scope="row">GRIDCODE</th><td>' + Autolinker.link(String(feature.properties['GRIDCODE'])) + '</td></tr><tr><th scope="row">Shape_Leng</th><td>' + Autolinker.link(String(feature.properties['Shape_Leng'])) + '</td></tr><tr><th scope="row">Shape_Area</th><td>' + Autolinker.link(String(feature.properties['Shape_Area'])) + '</td></tr></table>';
+			layer.bindPopup(popupContent);
+		}
+
+		function doStyleelev6217(feature) {
+				return {
+					color: '#728584',
+					fillColor: '#a6cee3',
+					weight: 1.3,
+					dashArray: '',
+					opacity: 0.5,
+					fillOpacity: 0.5
+				};
+
+		}
+		var exp_elev6217JSON = new L.geoJson(exp_elev6217,{
+			onEachFeature: pop_elev6217,
+			style: doStyleelev6217
+		});
+		layerOrder[layerOrder.length] = exp_elev6217JSON;
+		for (index = 0; index < layerOrder.length; index++) {
+			feature_group.removeLayer(layerOrder[index]);feature_group.addLayer(layerOrder[index]);
+		}
+		//add comment sign to hide this layer on the map in the initial view.
+		feature_group.addLayer(exp_elev6217JSON);
+
+		feature_group.addTo(map);
+	var baseMaps = {
+		'OpenStreetMap': basemap_0};
+		L.control.layers(baseMaps,{"elev6217": exp_elev6217JSON,"hospital": cluster_grouphospitalJSON,"usgsgagesindiana": cluster_groupusgsgagesindianaJSON,"nhdflowlines": exp_nhdflowlinesJSON,"watershed": exp_watershedJSON,"precipforecast": exp_precipforecastJSON},{collapsed:false}).addTo(map);
+		L.control.scale({options: {position: 'bottomleft',maxWidth: 100,metric: true,imperial: false,updateWhenIdle: false}}).addTo(map);
+	</script>
+</body>
+</html>

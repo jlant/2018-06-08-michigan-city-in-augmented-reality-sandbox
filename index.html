@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+
+		<title>Augmented Reality for Science</title>
+
+		<meta name="description" content="A presentation about the USGS Kentucky Water Science Center's ideas on using augmented reality for science.">
+		<meta name="author" content="Jeremiah Lant">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<div class="reveal">
+
+			<!-- any section within this div container is a slide -->
+			<div class="slides">
+				<section>
+					<h1>Augmented Reality Sandbox</h1>
+					<p style="text-align: left;">
+						Project Team: <a href="">Specialized Water Modeling and Applied Technology Unit</a>
+					</p>
+					<p style="text-align: left;">
+						Presenter: <a href="https://github.com/jlant-usgs">Jeremiah Lant</a> / <a href="https://github.com/jlant-usgs">Hydrologist</a> / <a href="jlant@usgs.gov">jlant@usgs.gov</a> 
+					</p>
+				</section>
+
+                <section>
+
+                    <section>
+                        <h3>Outline</h3>
+                        <ul>
+                            <li class="fragment">Terminology</li>  
+                            <li class="fragment">Augmented Reality Sandbox</li>
+                            <li class="fragment">Other Related Technologies and Ideas</li>
+                            <li class="fragment">Potential Future for GIS</li>
+                        </ul>
+                        
+                    </section>
+
+                    <section>
+                        <h2>Terminology</h2>
+                    </section>
+
+                    <section>
+                        <dl>
+                            <dt>Augmented Reality (AR)</dt>
+                            <dd>a live direct or indirect view of a physical, real-world environment whose elements are augmented (or supplemented) by computer-generated sensory input such as sound, video, graphics or GPS data.</dd>
+                        </dl>
+                    </section>
+
+                    <section>
+                        <img src="images/augmented-reality-phone.png" alt="example of augmented reality">
+                    </section>
+
+                    <section>
+                        <dl>
+                            <dt>Virtual Reality (VR)</dt>
+                            <dd>the computer-generated simulation of a three-dimensional image or environment that can be interacted with in a seemingly real or physical way by a person using special electronic equipment, such as a helmet with a screen inside or gloves fitted with sensors.</dd>
+                        </dl>
+                    </section>
+
+                    <section>
+                        <img src="images/VR.jpg" alt="example of Virtual reality" style="background:none; border:none; box-shadow:none;">
+                    </section>
+
+                    <section>
+                        <dl>
+                            <dt>Mixed Reality (MR)</dt>
+                            <dd>the merging of real and virtual worlds to produce new environments and visualizations where physical and digital objects co-exist and interact in real time.</dd>
+                        </dl>
+                    </section>
+
+                    <section>
+                        <img src="images/mixed-reality-globe.jpg" alt="example of mixed reality" style="background:none; border:none; box-shadow:none;">
+                    </section>
+
+                    <section>
+                        <dl>
+                            <dt>Sandbox</dt>
+                            <dd>a shallow box or hollow in the ground partly filled with sand for children to play in.</dd>
+                        </dl>
+                    </section>
+
+                    <section>
+                        <div class="stretch">
+                            <img src="images/sandbox-regular-kids.jpg" style="background:none; border:none; box-shadow:none;">
+                        </div>  
+                    </section>
+
+                </section>
+
+                <section>
+                    
+                    <section>
+                        <h3>Augmented Reality Sandbox</h3>
+                    </section>
+
+                    <section>
+                        <h3>Who, What, and Why</h3>
+                        <ul>
+                            <li class="fragment">created by a research team at UC Davis</li>
+                            <li class="fragment">an augmented reality simulation of a topographical map with moving water on top of hills and valleys you create.</li>
+                            <li class="fragment">started with the goal of creating an interactive display for science museums to help teach patrons about freshwater and the watershed in relation to topography</li>
+                        </ul>
+                    </section>
+
+
+
+                    <section>
+                        <h3>Shaping the landscape</h3>
+                        <div class="stretch">
+                            <img src="images/sandbox-hands.jpg" style="background:none; border:none; box-shadow:none;" ">    
+                        </div>                        
+                    </section>
+
+                    <section>
+                        <h3>Making it rain</h3>
+                        <div class="stretch">
+                            <img src="images/sandbox-make-it-rain.jpg" style="background:none; border:none; box-shadow:none;" ">    
+                        </div>                        
+                    </section>
+
+                    <section>
+                        <h3>Making a mountain</h3>
+                        <img src="images/sandbox-gif.gif">
+                    </section>
+
+                    <section>
+                        <h3>Making a lake</h3>
+                        <img src="images/sandbox-gif2.gif">
+                    </section>
+
+                    <section>
+                        <h3>AR Sandbox Setup</h3>
+                        <div class="stretch">
+                            <img src="images/sandbox-layout.png" style="background:none; border:none; box-shadow:none;" ">    
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>AR Sandbox requires the following hardware components:</h3>
+                        <ul>
+                            <li class="fragment">A computer with a good graphics card, running any version of Linux.</li>  
+                            <li class="fragment">The AR Sandbox software, or rather the underlying Kinect 3D Video Package as of version 2.8</li>
+                            <li class="fragment">A Microsoft Kinect 3D camera for Xbox 360.</li>   
+                            <li class="fragment">A digital data projector with a digital video interface, such as HDMI, DVI, or DisplayPort.</li>
+                            <li class="fragment">A sandbox with a way to mount the Kinect camera and the projector above the sandbox.</li>
+                            <li class="fragment">Sand.</li>
+                        </ul>                      
+                    </section>
+
+                    <section>
+                        <h3>3D Camera - Kinect</h3>
+                        <div class="stretch">
+                            <img src="images/kinect-camera.png" style="background:none; border:none; box-shadow:none;" ">    
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>Physics</h3>
+                        <h5>Saint-Venant Shallow Water Equations</h5>
+                        <img src="images/shallow_water_waves.gif">
+                        <p>UC Davis team applied the equations to the different levels of topography allowing for realistic flows of water that move in relationship to the hills and valleys you create with your hand or shovel.</p>
+                    </section>
+
+                    <section>
+                        <h3>Current and Future Uses</h3>
+                        <ul>
+                            <li class="fragment">Educational tool</li>
+                            <li class="fragment">Simulate water movement through watersheds with <em>real</em> topography</li>
+                            <li class="fragment">Simulate <em>real</em> flood events</li>
+                            <li class="fragment">Simulate rainfall runoff scenarios on different land use types; i.e. agricultural fields, city streets, ...</li>
+                            <li class="fragment">many more...</li>
+                        </ul>                      
+                    </section>
+
+                </section>
+
+                <section>
+                    
+                    <section>
+                        <h3>Other Related Technologies and Ideas</h3>
+                    </section>
+
+                    <section>
+                        <div class="">
+                            <img src="images/layar.jpg" style="background:none; border:none; box-shadow:none;">    
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>Layar Instructions</h3>
+                        <div class="">
+                            <img src="images/layar-instructions.png" style="background:none; border:none; box-shadow:none;">    
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>Layar at USGS</h3>
+                        <div class="">
+                            <img src="images/layar-usgs.png" style="background:none; border:none; box-shadow:none;">    
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>Layar at USGS</h3>
+                        <div class="">
+                            <img src="images/layar-usgs-gages-map.png" style="background:none; border:none; box-shadow:none;">    
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>Layar at USGS</h3>
+                        <div class="">
+                            <img src="images/layar-usgs-gages.png" style="background:none; border:none; box-shadow:none;">    
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>USGS Flood Inundation Mapper</h3>
+                        <div class="">
+                            <img src="images/usgs-flood-mapper.png" style="background:none; border:none; box-shadow:none;">    
+                        </div>
+                    </section>
+
+                    <section data-background="images/hospital-flood1.png"></section>
+                    
+                    <section>
+                        <h3></h3>
+                        <div class="">
+                            <img src="images/columbus-regional-hospital-flood-line.png" style="background:none; border:none; box-shadow:none;">    
+                        </div>
+                    </section>
+
+                    <section>
+                        <h3>Microsoft Hololens</h3>
+                        <div class="">
+                            <img src="images/microsoft-hololens.jpg" style="background:none; border:none; box-shadow:none;">    
+                        </div>             
+                    </section>
+
+                    <section>
+                        <h3>Holographic Maps</h3>
+                        <div class="">
+                            <img src="images/holomaps-waterfall.png" style="background:none; border:none; box-shadow:none;">    
+                        </div>              
+                    </section>
+
+                    <section>
+                        <h3>Holomaps by Taqtile</h3>
+                        <iframe width="1200" height="500" src="https://taqtile.com/holomaps/" frameborder="0" allowfullscreen></iframe>              
+                    </section>
+
+                    <section>
+                        <h3>ESRI Holomap</h3>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/hE9GXpZTwAs" frameborder="0" allowfullscreen></iframe>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <div class="stretch">
+                            <img src="images/sandbox-kids.jpg" style="background:none; border:none; box-shadow:none;">
+                        </div>                        
+                    </section>
+
+                    <section>
+                        <div class="stretch">
+                            <img src="images/sandbox-adults.JPG" style="background:none; border:none; box-shadow:none;">
+                        </div>
+                    </section>
+                </section>
+
+				<section style="text-align: left;">
+					<h2>Thank you!</h2>
+					<p>
+						Email: <a>jlant@usgs.gov</a><br>
+						GitHub: <a href="https://github.com/jlant-usgs">https://github.com/jlant-usgs</a><br>
+					</p>
+				</section>
+
+			</div>
+
+		<div class="footer">
+			<div style="text-align:left; float:left; width:15%; margin-left:2%; margin-top:1%">
+				<img src="images/usgs-logo.png">
+			</div>
+			<div style="text-align:right; float:right; margin-right:5%; margin-top:1%">
+				<p style=" font-size:24px; height:36px">	
+		        	<img style="vertical-align:middle" class="social-icon" src="images/github-mark-light.png"><a href="https://github.com/jlant-usgs"> jlant-usgs </a>
+		    	</p>
+	        </div>
+        </div>
+
+
+		</div>
+
+
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
